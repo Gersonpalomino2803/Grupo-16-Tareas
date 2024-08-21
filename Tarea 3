@@ -1,0 +1,105 @@
+#Ejercicio 1
+import scipy.stats as stats
+n = 10  # Número de lanzamientos
+p = 0.5  # Probabilidad de éxito (obtener una cara)
+k = 7# Número específico de éxitos
+
+# I. Probabilidad de obtener exactamente 7 caras en 10 lanzamientos
+prob_exact = stats.binom.pmf(k, n, p)
+print(f"La probabilidad de obtener exactamente {k} caras en {n} lanzamientos es: {prob_exact:.4f}")
+
+#Ejercicio 2
+prob_cumulative = stats.binom.cdf(k, n, p)
+print(f"La probabilidad acumulada de obtener {k} o menos caras en {n} lanzamientos es: {prob_cumulative:.4f}")
+
+#Ejercicio 3
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Parámetros
+n = 10  # Número de lanzamientos
+p = 0.5  # Probabilidad de éxito (moneda justa)
+
+# Posibles resultados (0 a n éxitos)
+x = np.arange(0, n + 1)
+
+# Distribución binomial
+y = stats.binom.pmf(x, n, p)
+
+# Graficar la distribución binomial
+plt.bar(x, y, color='skyblue', alpha=0.7)
+plt.title(f'Distribución Binomial (n={n}, p={p})')
+plt.xlabel('Número de caras')
+plt.ylabel('Probabilidad')
+plt.xticks(np.arange(0, n+1, 1))
+plt.show()
+
+#Ejercicio 4
+n =10
+p = 0.8
+k = 7
+# El primer ejercicio
+prob_exact = stats.binom.pmf(k, n, p)
+print(prob_exact)
+
+# El segundo ejercicio
+prob_cumulative = stats.binom.cdf(k, n, p)
+print(prob_cumulative)
+
+# El tercer ejercicio
+y = stats.binom.pmf(x, n, p)
+
+# Gráfica actualizada
+plt.bar(x, y, color='lightcoral', alpha=0.7)
+plt.title(f'Distribución Binomial (n={n}, p={p})')
+plt.xlabel('Número de caras')
+plt.ylabel('Probabilidad')
+plt.xticks(np.arange(0, n+1, 1))
+plt.show()
+
+#Ejercicio 5
+from scipy.stats import norm
+
+# Parámetros
+mu = 0  # media
+sigma = 1  # desviación estándar
+n_samples = 1000  # número de muestras
+
+# Generar datos aleatorios
+datos = norm.rvs(loc=mu, scale=sigma, size=n_samples)
+
+#Ejercicio 6
+media = np.mean(datos)
+desviacion_estandar = np.std(datos)
+mediana = np.median(datos)
+
+print(f"Media: {media}")
+print(f"Desviación estándar: {desviacion_estandar}")
+print(f"Mediana: {mediana}")
+
+#Ejercicio 7
+plt.hist(datos, bins=30, density=True, alpha=0.6, color='green')
+
+
+xmin, xmax = plt.xlim()
+x = np.linspace(xmin, xmax, 100)
+p = norm.pdf(x, mu, sigma)
+plt.plot(x, p, 'k', linewidth=1)
+
+title = "Histograma de los datos "
+plt.title(title)
+plt.xlabel('Valor')
+plt.ylabel('Densidad')
+
+# Mostrar la gráfica
+plt.show()
+
+#Ejercicio8
+mu = 0  # media
+sigma = 1  # desviación estándar
+
+
+probabilidad = norm.cdf(1, loc=mu, scale=sigma) - norm.cdf(-1, loc=mu, scale=sigma)
+
+print(f"La probabilidad de que caiga entre el  -1 a 1 es: {probabilidad:.4f}")
+
