@@ -1,0 +1,68 @@
+#Ejercicio 1
+import pandas as pd
+data_ciudades = {
+    'Ciudad': ['Lima', 'Arequipa', 'Trujillo', 'Cusco', 'Chiclayo', 'Piura', 'Iquitos', 'Huancayo', 'Tacna', 'Pucallpa'],
+    'Habitantes': [1047996, 100169, 92331, 428450, 305717, 484475, 441649, 385098, 294395, 283734],
+    'Area_km2': [2672.28, 1545.77, 1487.7, 116.5, 279.89, 6217.26, 368.9, 109.19, 59.4, 483.44],
+    'Altitud_m': [154, 2325, 34, 3399, 29, 29, 106, 3271, 562, 156],
+    'Densidad_poblacion_por_km2': [3924, 64.8, 62.1, 3673, 1091.6, 77.9, 1196, 3528.6, 4966, 587.2] }
+
+
+nfo = pd.DataFrame(data_ciudades)
+nfo
+
+#Ejercicio 2
+import pandas as pd
+data_ciudades_2 = {
+    'Ciudad': ['Lima', 'Arequipa', 'Trujillo', 'Cusco', 'Chiclayo', 'Piura', 'Iquitos', 'Huancayo', 'Tacna', 'Pucallpa'],
+    'Gentilicio': ['Limense', 'Arequipeño', 'Trujillano', 'Cusqueño', 'Chiclayano', 'Piurano', 'Iquiteño', 'Huancaino', 'Tacneño', 'Pucallpino'],
+    'Provincia': ['Lima', 'Arequipa', 'Trujillo', 'Cusco', 'Chiclayo', 'Piura', 'Maynas', 'Huancayo', 'Tacna', 'Coronel Portillo'],
+    'Region': ['Lima', 'Arequipa', 'La Libertad', 'Cusco', 'Lambayeque', 'Piura', 'Loreto', 'Junín', 'Tacna', 'Ucayali']
+}
+nombres = pd.DataFrame(data_ciudades_2)
+nombres
+
+#Ejercicio 3
+cuadro_1 = pd.merge(nfo, nombres, on='Ciudad', how='inner')
+
+
+cuadro_1
+
+#Ejercicio 4
+print(cuadro_1.describe())
+
+densidad_minima = cuadro_1['Densidad_poblacion_por_km2'].min()
+ciudad_con_densidad_minima = cuadro_1[cuadro_1['Densidad_poblacion_por_km2'] == densidad_minima]['Ciudad'].iloc[0]
+
+densidad_maxima = cuadro_1['Densidad_poblacion_por_km2'].max()
+ciudad_con_densidad_maxima = cuadro_1[cuadro_1['Densidad_poblacion_por_km2'] == densidad_maxima]['Ciudad'].iloc[0]
+
+print(f"La mínima densidad poblacional es {densidad_minima}, y corresponde a la ciudad de {ciudad_con_densidad_minima}")
+print(f"La máxima densidad poblacional es {densidad_maxima}, y corresponde a la ciudad de {ciudad_con_densidad_maxima}")
+
+#Ejercicio 5
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 6))
+plt.bar(cuadro_1['Ciudad'], cuadro_1['Habitantes'], color='#4682B4')
+
+plt.title('Cantidad de Habitantes por Ciudad', fontsize=10)
+plt.xlabel('Ciudad', fontsize=10)
+plt.ylabel('Cantidad de Habitantes', fontsize=10)
+plt.xticks(rotation=45)
+
+plt.show()
+
+#Ejercicio 6
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 6))
+plt.scatter(cuadro_1['Altitud_m'], cuadro_1['Habitantes'], color='#4682B4')
+
+plt.title('Relación entre Altitud y Número de Habitantes', fontsize=16)
+plt.xlabel('Altitud (m)', fontsize=14)
+plt.ylabel('Número de Habitantes', fontsize=14)
+
+plt.show()
+
+
