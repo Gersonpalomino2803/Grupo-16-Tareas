@@ -1,0 +1,62 @@
+#Ejercicio 1
+x = 5
+
+if x % 2 == 0 and x % 3 == 0:
+    print("Es múltiplo de 2 y 3")
+elif x % 2 == 0:
+    print("Es múltiplo de 2")
+elif x % 3 == 0:
+    print("Es múltiplo de 3")
+else:
+    print("No es multiplo de 2 ni de 3")
+
+#Ejercicio 2
+for x in range(1, 100):
+    if x % 3 == 0 and x % 5 == 0:
+        print("FizzBuzz")
+    elif x % 3 == 0:
+        print("Fizz")
+    elif x % 5 == 0:
+        print("Buzz")
+    else:
+        print(x)
+
+#Ejercicio 3
+def calcular_descuento(total):
+    if total >= 1000:
+        total_final = total * 0.80  # Aplica un 20% de descuento
+    elif total >= 500:
+        total_final = total * 0.90  # Aplica un 10% de descuento
+    else:
+        total_final = total  # No aplica descuento
+
+    return total_final
+
+total=1200
+print("Total final para 1200:", calcular_descuento(total))
+total=750
+print("Total final para 750:", calcular_descuento(total))
+total=300
+print("Total final para 300:", calcular_descuento(total))
+
+#Ejercicio 4
+def calcular_craest(media_personal, media_curso, desviacion_curso):
+    craest = ((media_personal - media_curso) * 10) / desviacion_curso + 50
+    return craest
+media_personal = 14
+media_curso = 15
+desviacion_curso = 3.5
+
+craest = calcular_craest(media_personal, media_curso, desviacion_curso)
+print("Tu CRAEST es:", craest)
+
+#Ejercicio 5
+def calcular_craest(media_personal, media_curso, desviacion_curso):
+    craest = ((media_personal - media_curso) * 10) / desviacion_curso + 50
+    return craest
+media_personal = 14
+media_curso = 15
+desviacion_curso = 3.5
+
+craest = calcular_craest(media_personal, media_curso, desviacion_curso)
+print("Tu CRAEST es:", craest)
